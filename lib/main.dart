@@ -29,6 +29,7 @@ class _ContentSwitcherState extends State<ContentSwitcher> {
     final List<Widget> _widgets = [
       TextWidget(_text),
       ContainerWidget(_text),
+      ColumnWidget(_text),
     ];
 
     return Scaffold(
@@ -40,6 +41,7 @@ class _ContentSwitcherState extends State<ContentSwitcher> {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.text_fields), label: "Text"),
           BottomNavigationBarItem(icon: Icon(Icons.crop_square), label: "Container"),
+          BottomNavigationBarItem(icon: Icon(Icons.view_column), label: "Column"),
         ],
       ),
     );
@@ -66,6 +68,27 @@ class ContainerWidget extends StatelessWidget {
       padding: EdgeInsets.all(20),
       color: Colors.blue,
       child: Text(text, style: TextStyle(fontSize: 20)),
+    );
+  }
+}
+
+class ColumnWidget extends StatelessWidget {
+  final String text;
+  ColumnWidget(this.text);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(text, style: TextStyle(fontSize: 24)),
+        SizedBox(height: 10),
+        Text(text.toUpperCase(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+        SizedBox(height: 10),
+        Text(text, style: TextStyle(fontSize: 24)),
+        SizedBox(height: 10),
+        Text(text.toUpperCase(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24))
+      ],
     );
   }
 }
