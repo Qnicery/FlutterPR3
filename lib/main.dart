@@ -28,6 +28,7 @@ class _ContentSwitcherState extends State<ContentSwitcher> {
   Widget build(BuildContext context) {
     final List<Widget> _widgets = [
       TextWidget(_text),
+      ContainerWidget(_text),
     ];
 
     return Scaffold(
@@ -52,5 +53,19 @@ class TextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(text, style: TextStyle(fontSize: 24));
+  }
+}
+
+class ContainerWidget extends StatelessWidget {
+  final String text;
+  ContainerWidget(this.text);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(20),
+      color: Colors.blue,
+      child: Text(text, style: TextStyle(fontSize: 20)),
+    );
   }
 }
