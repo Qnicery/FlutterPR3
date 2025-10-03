@@ -30,18 +30,21 @@ class _ContentSwitcherState extends State<ContentSwitcher> {
       TextWidget(_text),
       ContainerWidget(_text),
       ColumnWidget(_text),
+      RowWidget(_text),
     ];
 
     return Scaffold(
       appBar: AppBar(title: Text("Работа с виджетами")),
       body: Center(child: _widgets[_index]),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         currentIndex: _index,
         onTap: (i) => setState(() => _index = i),
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.text_fields), label: "Text"),
           BottomNavigationBarItem(icon: Icon(Icons.crop_square), label: "Container"),
           BottomNavigationBarItem(icon: Icon(Icons.view_column), label: "Column"),
+          BottomNavigationBarItem(icon: Icon(Icons.view_column), label: "Row"),
         ],
       ),
     );
@@ -89,6 +92,34 @@ class ColumnWidget extends StatelessWidget {
         SizedBox(height: 10),
         Text(text.toUpperCase(), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24))
       ],
+    );
+  }
+}
+
+class RowWidget extends StatelessWidget {
+  final String text;
+  RowWidget(this.text);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: FittedBox(
+            child: FlutterLogo(),
+          ),
+        ),
+        SizedBox(width: 10),
+        Expanded(
+          child: Text(text, style: TextStyle(fontSize: 24), textAlign: TextAlign.center),
+        ),
+        SizedBox(width: 10),
+        Expanded(
+          child: FittedBox(
+            child: Icon(Icons.sentiment_satisfied),
+          ),
+        ),
+    ],
     );
   }
 }
