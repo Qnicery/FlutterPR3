@@ -31,6 +31,7 @@ class _ContentSwitcherState extends State<ContentSwitcher> {
       ContainerWidget(_text),
       ColumnWidget(_text),
       RowWidget(_text),
+      ButtonWidget(_text),
     ];
 
     return Scaffold(
@@ -44,7 +45,8 @@ class _ContentSwitcherState extends State<ContentSwitcher> {
           BottomNavigationBarItem(icon: Icon(Icons.text_fields), label: "Text"),
           BottomNavigationBarItem(icon: Icon(Icons.crop_square), label: "Container"),
           BottomNavigationBarItem(icon: Icon(Icons.view_column), label: "Column"),
-          BottomNavigationBarItem(icon: Icon(Icons.view_column), label: "Row"),
+          BottomNavigationBarItem(icon: Icon(Icons.view_stream), label: "Row"),
+          BottomNavigationBarItem(icon: Icon(Icons.touch_app), label: "Button")
         ],
       ),
     );
@@ -120,6 +122,43 @@ class RowWidget extends StatelessWidget {
           ),
         ),
     ],
+    );
+  }
+}
+
+class ButtonWidget extends StatefulWidget {
+  final String text;
+  ButtonWidget(this.text);
+
+  @override
+  _ButtonWidgetState createState() => _ButtonWidgetState();
+}
+
+class _ButtonWidgetState extends State<ButtonWidget> {
+  bool _isRed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          widget.text,
+          style: TextStyle(
+            fontSize: 24,
+            color: _isRed ? Colors.red : Colors.blue,
+          ),
+        ),
+        SizedBox(height: 40),
+        ElevatedButton(
+          onPressed: () {
+            setState(() {
+              _isRed = !_isRed;
+            });
+          },
+          child: Text("Поменять цвет"),
+        ),
+      ],
     );
   }
 }
